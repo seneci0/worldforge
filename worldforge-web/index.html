@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Worldforge – Online strategy on a real map of the world</title>
+  <meta name="description" content="Worldforge is a free online strategy game by Senecioteam. Pick one of 168 real countries and lead it in one shared, persistent world against real players.">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta property="og:title" content="Worldforge – Online strategy on a real map of the world">
+  <meta property="og:description" content="Pick one of 168 real countries and lead it in one shared world against real players.">
+  <meta property="og:image" content="img/hero.jpg">
+  <link rel="icon" type="image/png" href="img/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Shared icons -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></symbol>
+  <symbol id="i-download" viewBox="0 0 16 16"><path d="M8 2v8M4.5 6.8L8 10.3l3.5-3.5M2.5 13.5h11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7.2" fill="#f3d27a"/><circle cx="8" cy="8" r="7.2" fill="none" stroke="#b8862e" stroke-width="1"/><circle cx="8" cy="8" r="4.6" fill="none" stroke="#b8862e" stroke-width="1"/><path d="M8 5.6v4.8" stroke="#b8862e" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 10 10"><path d="M4 2l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-user" viewBox="0 0 16 16"><circle cx="8" cy="5.5" r="2.8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 14c.6-2.8 2.8-4.2 5.5-4.2s4.9 1.4 5.5 4.2" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 16 16"><path d="M3.5 8.4l3 3 6-6.4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 16 16"><rect x="3" y="7" width="10" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M5.5 7V5a2.5 2.5 0 0 1 5 0v2" fill="none" stroke="currentColor" stroke-width="1.3"/></symbol>
+</svg>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="logo" href="#top" aria-label="Worldforge">
+      <img src="img/icon.png" alt="" width="22" height="22">
+      <span>WORLDFORGE</span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Main">
+      <a href="#play" data-i18n="nav.play">How to play</a>
+      <a href="#features" data-i18n="nav.features">Features</a>
+      <a href="#store" data-i18n="nav.store">Gold store</a>
+      <a href="#community" data-i18n="nav.community">Community</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" role="group" aria-label="Language / Jazyk">
+        <button type="button" data-lang="cs" aria-label="Čeština">CZ</button><button type="button" data-lang="en" aria-label="English">EN</button>
+      </div>
+      <a class="nav-icon" data-link="discord" href="#community" aria-label="Discord"><svg><use href="#i-discord"/></svg></a>
+      <button class="nav-acct" id="navAcct" type="button"><svg class="i16"><use href="#i-user"/></svg><span id="navAcctText">Log in</span></button>
+      <a class="btn btn-light btn-sm" data-link="download" href="#download" download data-i18n="btn.download">Download</a>
+      <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <svg class="waves waves-hero" data-waves="hero" aria-hidden="true"></svg>
+  <div class="hero-in">
+    <div class="hero-copy">
+      <a class="pill" href="#play"><span class="live"></span><span data-i18n="hero.pill">Online multiplayer</span> <span class="mono-badge">v1.0</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+      <h1 data-i18n="hero.title">The online strategy game on a real map of the world</h1>
+      <p class="lead" data-i18n="hero.lead">Pick a <b>free country</b> from 168 real nations and lead it in one shared, persistent world against <b>real players</b>.</p>
+      <div class="hero-btns">
+        <a class="btn btn-light" data-link="download" href="#download" download><svg class="i16"><use href="#i-download"/></svg><span data-i18n="hero.download">Download for Windows</span></a>
+        <a class="btn btn-ghost btn-discord" data-link="discord" href="#community"><svg class="i18"><use href="#i-discord"/></svg><span data-i18n="hero.discord">Join our Discord</span></a>
+      </div>
+      <p class="hero-note" data-i18n="hero.note">Free to play · Windows 10 / 11 · 103 MB</p>
+    </div>
+
+    <!-- Game window mock-up with a real in-game screenshot -->
+    <div class="mock" aria-hidden="true">
+      <div class="mock-top">
+        <span class="mock-brand">WORLDFORGE</span>
+        <span class="mock-nat"><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d7141a"/><path d="M0 0l15 10L0 20z" fill="#11457e"/></svg> <span data-i18n="c.cz">Czechia</span></span>
+        <span class="mock-online"><i></i>Online</span>
+        <span class="mock-clock" id="mockDate">January 1, 2026</span>
+        <span class="mock-res">
+          <span><i style="--c:#e0c068"></i><span data-i18n="res.money">Money</span> <b id="mockMoney">1,240</b></span>
+          <span><i style="--c:#9bc46a"></i><span data-i18n="res.food">Food</span> <b>318</b></span>
+          <span><i style="--c:#a9b4c2"></i><span data-i18n="res.metals">Metals</span> <b>142</b></span>
+          <span><i style="--c:#c78a5b"></i><span data-i18n="res.oil">Oil</span> <b>64</b></span>
+          <span><i style="--c:#d79ac9"></i><span data-i18n="res.goods">Goods</span> <b>210</b></span>
+          <span><i style="--c:#6fc3d9"></i><span data-i18n="res.electronics">Electronics</span> <b>37</b></span>
+        </span>
+      </div>
+      <div class="mock-body">
+        <aside class="mock-side">
+          <div class="mock-search"><span data-i18n="mock.search">Search provinces…</span><kbd>/</kbd></div>
+          <ul>
+            <li data-i18n="tab.prov">Province</li><li data-i18n="tab.country">Country</li><li data-i18n="tab.comp">Companies</li><li data-i18n="tab.trans">Transport</li><li data-i18n="tab.tech">Research</li><li data-i18n="tab.army">Army</li>
+            <li class="on"><span data-i18n="tab.dip">Diplomacy</span> <em class="badge">1</em></li>
+            <li data-i18n="tab.coal">Coalitions</li><li data-i18n="tab.market">Market</li><li data-i18n="tab.news">News</li><li data-i18n="tab.art">Articles</li>
+          </ul>
+        </aside>
+        <div class="mock-map">
+          <img src="img/hero.jpg" alt="" width="1600" height="900">
+          <div class="mock-card">
+            <div class="mc-k" data-i18n="mock.offer">Offer from a player</div>
+            <div class="mc-t" data-i18n="c.pl">Poland</div>
+            <p class="mc-p" data-i18n="mock.offerText">Proposes an alliance and mutual defense.</p>
+            <div class="mc-btns"><span class="ok" data-i18n="ui.accept">Accept</span><span data-i18n="ui.decline">Decline</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COUNTRIES ============ -->
+<section class="rail states">
+  <div class="states-grid">
+    <div class="states-copy">
+      <p data-i18n="states.copy">Choose from <b>168 real countries</b> with real borders and capitals. <b>Taken countries are run by other players.</b></p>
+      <a class="btn btn-light btn-sm" href="#play"><span data-i18n="states.btn">How it works</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+    </div>
+    <ul class="states-tiles">
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d7141a"/><path d="M0 0l15 10L0 20z" fill="#11457e"/></svg><span data-i18n="c.cz">Czechia</span><small data-i18n="cap.cz">Prague</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#dd0000"/><rect y="13.33" width="30" height="6.67" fill="#ffce00"/></svg><span data-i18n="c.de">Germany</span><small data-i18n="cap.de">Berlin</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="10" height="20" fill="#002395"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ed2939"/></svg><span data-i18n="c.fr">France</span><small data-i18n="cap.fr">Paris</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="20" fill="#fff"/><circle cx="15" cy="10" r="6" fill="#bc002d"/></svg><span data-i18n="c.jp">Japan</span><small data-i18n="cap.jp">Tokyo</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#dc143c"/></svg><span data-i18n="c.pl">Poland</span><small data-i18n="cap.pl">Warsaw</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="10" height="20" fill="#009246"/><rect x="10" width="10" height="20" fill="#fff"/><rect x="20" width="10" height="20" fill="#ce2b37"/></svg><span data-i18n="c.it">Italy</span><small data-i18n="cap.it">Rome</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="6.67" fill="#ed2939"/><rect y="6.67" width="30" height="6.67" fill="#fff"/><rect y="13.33" width="30" height="6.67" fill="#00a1de"/></svg><span data-i18n="c.lu">Luxembourg</span><small data-i18n="cap.lu">Luxembourg</small></li>
+      <li><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="20" fill="#fff"/><g fill="#b22234"><rect width="30" height="1.54"/><rect y="3.08" width="30" height="1.54"/><rect y="6.15" width="30" height="1.54"/><rect y="9.23" width="30" height="1.54"/><rect y="12.31" width="30" height="1.54"/><rect y="15.38" width="30" height="1.54"/><rect y="18.46" width="30" height="1.54"/></g><rect width="12" height="10.77" fill="#3c3b6e"/></svg><span data-i18n="c.us">United States</span><small>Washington</small></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ HOW TO PLAY ============ -->
+<section class="rail sec" id="play">
+  <div class="sec-head">
+    <h2 data-i18n="play.h2">From download to your first turn in minutes.<br><span>Four steps into the shared world.</span></h2>
+    <a class="btn btn-light btn-sm" data-link="download" href="#download" download><span data-i18n="btn.download">Download</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+  </div>
+  <ol class="how">
+    <li>
+      <div class="how-art" aria-hidden="true">
+        <div class="mini">
+          <div class="md-h"><img src="img/icon.png" alt="" width="26" height="26"><span><b>Worldforge-Setup.exe</b><em>103 MB · Windows</em></span></div>
+          <div class="bar"><s class="bar-dl"></s></div>
+        </div>
+      </div>
+      <span class="how-n">01</span>
+      <h3 data-i18n="s1.h">Download the game</h3>
+      <p data-i18n="s1.p">Windows installer. Installs for your user account only, no admin rights needed.</p>
+    </li>
+    <li>
+      <div class="how-art" aria-hidden="true">
+        <div class="mini mini-pick">
+          <div class="mp-r on"><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#d7141a"/><path d="M0 0l15 10L0 20z" fill="#11457e"/></svg><span data-i18n="c.cz">Czechia</span><em class="free" data-i18n="ui.free">free</em></div>
+          <div class="mp-r"><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="6.67" fill="#000"/><rect y="6.67" width="30" height="6.67" fill="#dd0000"/><rect y="13.33" width="30" height="6.67" fill="#ffce00"/></svg><span data-i18n="c.de">Germany</span><em data-i18n="ui.player">player</em></div>
+          <div class="mp-r"><svg viewBox="0 0 30 20" class="flag"><rect width="30" height="10" fill="#fff"/><rect y="10" width="30" height="10" fill="#dc143c"/></svg><span data-i18n="c.pl">Poland</span><em class="free" data-i18n="ui.free">free</em></div>
+        </div>
+      </div>
+      <span class="how-n">02</span>
+      <h3 data-i18n="s2.h">Pick a free country</h3>
+      <p data-i18n="s2.p">Free countries are listed; taken ones are run by other players.</p>
+    </li>
+    <li>
+      <div class="how-art" aria-hidden="true">
+        <div class="mini">
+          <div class="mo-k" data-i18n="tab.dip">Diplomacy</div>
+          <div class="mo-t" data-i18n="s3.offer">Trade agreement offer</div>
+          <div class="mc-btns"><span class="ok" data-i18n="ui.accept">Accept</span><span data-i18n="ui.decline">Decline</span></div>
+        </div>
+      </div>
+      <span class="how-n">03</span>
+      <h3 data-i18n="s3.h">Play online</h3>
+      <p data-i18n="s3.p">The world is persistent. Time keeps running even when you are logged out.</p>
+    </li>
+    <li>
+      <div class="how-art">
+        <a class="mini mini-dc" data-link="discord" href="#community">
+          <span class="dc-av"><img src="img/icon.png" alt="" width="34" height="34"></span>
+          <span class="md-t"><b>Worldforge</b><em>Discord server</em></span>
+          <span class="btn-dc-sm" data-i18n="ui.join">Join</span>
+        </a>
+      </div>
+      <span class="how-n">04</span>
+      <h3 data-i18n="s4.h">Join the Discord</h3>
+      <p data-i18n="s4.p">Plan coalitions and trade, and get the latest news first.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="rail sec" id="features">
+  <div class="sec-head">
+    <h2 data-i18n="feat.h2">Run an entire nation.<br><span>Economy, research, diplomacy and war, all connected.</span></h2>
+    <a class="btn btn-light btn-sm" data-link="download" href="#download" download><span data-i18n="btn.download">Download</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+  </div>
+
+  <div class="bento">
+    <article class="card c-wide">
+      <div class="art" aria-hidden="true">
+        <svg class="waves" data-waves="cardA"></svg>
+        <div class="ask">
+          <svg class="spark" viewBox="0 0 16 16"><path d="M8 1v4M8 11v4M1 8h4M11 8h4M3.5 3.5l2 2M10.5 10.5l2 2M12.5 3.5l-2 2M5.5 10.5l-2 2"/></svg>
+          <span><em class="ask-q" data-i18n="fa.q">Which country will you lead?</em><em class="ask-s" data-i18n="fa.s">Play as</em> <b id="typeState"></b><i class="caret"></i></span>
+          <svg class="arrow" viewBox="0 0 16 16"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </div>
+      </div>
+      <h3 data-i18n="fa.h">A real map of Earth</h3>
+      <p data-i18n="fa.p">Real borders, capitals, roads, railways and rivers. Day and night run for the whole world at once.</p>
+    </article>
+
+    <article class="card">
+      <div class="art art-res" aria-hidden="true">
+        <ul class="res-list">
+          <li><i style="--c:#e0c068"></i><span data-i18n="res.money">Money</span><span class="bar"><s style="--w:82%"></s></span><b>+124</b></li>
+          <li><i style="--c:#9bc46a"></i><span data-i18n="res.food">Food</span><span class="bar"><s style="--w:64%"></s></span><b>+38</b></li>
+          <li><i style="--c:#a9b4c2"></i><span data-i18n="res.metals">Metals</span><span class="bar"><s style="--w:48%"></s></span><b>+21</b></li>
+          <li><i style="--c:#c78a5b"></i><span data-i18n="res.oil">Oil</span><span class="bar"><s style="--w:22%"></s></span><b class="bad">−6</b></li>
+          <li><i style="--c:#d79ac9"></i><span data-i18n="res.goods">Goods</span><span class="bar"><s style="--w:56%"></s></span><b>+17</b></li>
+          <li><i style="--c:#6fc3d9"></i><span data-i18n="res.electronics">Electronics</span><span class="bar"><s style="--w:30%"></s></span><b>+4</b></li>
+        </ul>
+      </div>
+      <h3 data-i18n="fb.h">Six resources, one budget</h3>
+      <p data-i18n="fb.p">Taxes, trade and companies against upkeep, the army and infrastructure.</p>
+    </article>
+
+    <article class="card">
+      <div class="art art-build" aria-hidden="true">
+        <div class="prov">
+          <div class="prov-h"><span data-i18n="cap.cz">Prague</span><em data-i18n="fc.city">city · 20 slots</em></div>
+          <div class="prov-r"><i class="ic"><svg viewBox="0 0 16 16"><path d="M2 14V7l4 2V7l4 2V4h4v10z"/></svg></i><span data-i18n="b.factory">Factories</span><span class="lvl" data-i18n="fc.l3">L3</span></div>
+          <div class="prov-r hl"><i class="ic"><svg viewBox="0 0 16 16"><path d="M8 2l7 4-7 4-7-4zM4 8v3.5c2 1.6 6 1.6 8 0V8"/></svg></i><span data-i18n="b.uni">University</span><span class="tag" data-i18n="fc.building">building</span><span class="lvl" data-i18n="fc.l2">L2</span></div>
+          <div class="prov-r"><i class="ic"><svg viewBox="0 0 16 16"><path d="M2 6h12l-1-3H3zM3 6v8h10V6M6 14v-4h4v4"/></svg></i><span data-i18n="b.market">Shopping center</span><span class="lvl" data-i18n="fc.l1">L1</span></div>
+          <div class="prov-r free"><i class="ic">+</i><span data-i18n="fc.free">Free building slot</span></div>
+        </div>
+      </div>
+      <h3 data-i18n="fc.h">20 buildings, up to level 5</h3>
+      <p data-i18n="fc.p">8–20 building slots in cities, 2–4 in the countryside.</p>
+    </article>
+
+    <article class="card">
+      <div class="art art-tech" aria-hidden="true">
+        <div class="tech-row">
+          <span class="t-node"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></svg></span>
+          <span class="t-line"></span>
+          <span class="t-node"><svg viewBox="0 0 24 24"><path d="M13 2L5 13h6l-1 9 8-11h-6z"/></svg></span>
+          <span class="t-line"></span>
+          <span class="t-node on"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v5l-5 9a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9V3"/><path d="M7.5 14h9"/></svg></span>
+        </div>
+        <div class="tech-queue"><span data-i18n="fd.robot">Robotics</span><span class="q-bar"><s></s></span><b>60%</b></div>
+      </div>
+      <h3 data-i18n="fd.h">56 technologies in 11 fields</h3>
+      <p data-i18n="fd.p">Run several projects at once; points are split by priority.</p>
+    </article>
+
+    <article class="card">
+      <div class="art art-dip" aria-hidden="true">
+        <div class="dip-tabs"><span class="on"><span data-i18n="fe.all">Alliances</span> <b>3</b></span><span><span data-i18n="fe.trade">Trade</span> <b>4</b></span><span><span data-i18n="fe.coal">Coalition</span> <b>6</b></span></div>
+        <svg class="dip-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M20 42 C 34 42, 44 78, 58 78"/><path d="M20 42 C 36 34, 52 34, 68 36"/><path d="M58 78 C 68 70, 72 50, 68 36"/>
+        </svg>
+        <span class="who w1"><svg viewBox="0 0 12 12"><path d="M1 1l9 4-4 1.5L4.5 11z"/></svg><span data-i18n="c.cz">Czechia</span></span>
+        <span class="who w2"><svg viewBox="0 0 12 12"><path d="M1 1l9 4-4 1.5L4.5 11z"/></svg><span data-i18n="c.pl">Poland</span></span>
+        <span class="who w3"><svg viewBox="0 0 12 12"><path d="M1 1l9 4-4 1.5L4.5 11z"/></svg><span data-i18n="c.at">Austria</span></span>
+      </div>
+      <h3 data-i18n="fe.h">Diplomacy with real players</h3>
+      <p data-i18n="fe.p">Offer peace, alliances or trade. Coalitions of up to six countries.</p>
+    </article>
+
+    <article class="card c-full">
+      <div class="art art-army" aria-hidden="true">
+        <div class="army-ui">
+          <div class="au-list">
+            <div class="au-h"><span data-i18n="tab.army">Army</span> <em data-i18n="ff.units">12 units</em></div>
+            <div class="au-r"><i class="cl land"></i><span data-i18n="u.inf">Infantry</span><b>×4</b></div>
+            <div class="au-r on"><i class="cl land"></i><span data-i18n="u.mbt">Main battle tank</span><b>×2</b></div>
+            <div class="au-r"><i class="cl land"></i><span data-i18n="u.mlrs">Rocket launcher</span><b>×1</b></div>
+            <div class="au-r"><i class="cl air"></i><span data-i18n="u.stealth">Stealth fighter</span><b>×2</b></div>
+            <div class="au-r"><i class="cl sea"></i><span data-i18n="u.frigate">Frigate</span><b>×3</b></div>
+          </div>
+          <div class="au-card">
+            <div class="au-k" data-i18n="ff.sel">Selected unit</div>
+            <div class="au-t" data-i18n="u.mbt">Main battle tank</div>
+            <div class="au-stats">
+              <div><span data-i18n="ff.atk">Attack</span><b>24</b><s style="--w:70%"></s></div>
+              <div><span data-i18n="ff.def">Defense</span><b>16</b><s style="--w:47%"></s></div>
+              <div><span data-i18n="ff.hp">HP</span><b>150</b><s style="--w:75%"></s></div>
+            </div>
+            <div class="au-btns"><span class="b-gold" data-i18n="ff.move">Move</span><span data-i18n="ff.merge">Merge</span><span data-i18n="ff.split">Split</span></div>
+          </div>
+        </div>
+        <svg class="waves" data-waves="cardF"></svg>
+      </div>
+      <h3 data-i18n="ff.h">32 units on land, in the air and at sea</h3>
+      <p data-i18n="ff.p">Infantry, tanks, aircraft, navies and missiles. Terrain changes both defense and speed.</p>
+    </article>
+  </div>
+
+  <div class="mapstrip"><img src="img/hero.jpg" alt="" loading="lazy"></div>
+  <div class="stats">
+    <div class="stat"><b><span data-count="168">168</span></b><p data-i18n="st.1">real countries in one shared world</p></div>
+    <div class="stat"><b><span data-count="45">45</span>%</b><p data-i18n="st.2">of all provinces wins the game</p></div>
+    <div class="stat"><b data-i18n="st.3b">2 months</b><p data-i18n="st.3">of real time per world, then the score decides</p></div>
+  </div>
+</section>
+
+<!-- ============ GOLD STORE ============ -->
+<section class="rail sec" id="store">
+  <div class="sec-head">
+    <h2 data-i18n="store.h2">Gold store.<br><span>Top up your game account. Log in with the same player name and password you use in Worldforge.</span></h2>
+  </div>
+
+  <div class="store-banner" id="storeBanner" hidden></div>
+  <div class="acct" id="acct" aria-live="polite"></div>
+  <div class="recent" id="recent" hidden></div>
+  <div class="packs" id="packs"></div>
+  <noscript><p class="fine">The store needs JavaScript.</p></noscript>
+
+  <div class="store-info">
+    <div class="si-box">
+      <h3 data-i18n="si.h1">What gold is for</h3>
+      <p class="si-lead" data-i18n="si.lead">The game runs in real time, so gold buys time. The cost always follows the time that is left, so an almost finished item costs very little.</p>
+      <ul class="uses">
+        <li><span data-i18n="use.build">Finish a building</span><b><svg class="i14"><use href="#i-coin"/></svg>8 <em data-i18n="use.day">per remaining day</em></b></li>
+        <li><span data-i18n="use.train">Finish training</span><b><svg class="i14"><use href="#i-coin"/></svg>6 <em data-i18n="use.day">per remaining day</em></b></li>
+        <li><span data-i18n="use.infra">Finish an infrastructure upgrade</span><b><svg class="i14"><use href="#i-coin"/></svg>8 <em data-i18n="use.day">per remaining day</em></b></li>
+        <li><span data-i18n="use.tech">Finish research</span><b><svg class="i14"><use href="#i-coin"/></svg>48 <em data-i18n="use.day">per remaining day</em></b></li>
+        <li><span data-i18n="use.mob">Instant mobilization</span><b><svg class="i14"><use href="#i-coin"/></svg>120 <em data-i18n="use.level">per level</em></b></li>
+      </ul>
+      <p class="fine" data-i18n="si.more">You can also spend gold on resources, a country color or a premium account.</p>
+    </div>
+    <div class="si-box">
+      <h3 data-i18n="si.h2">How buying works</h3>
+      <ol class="flow">
+        <li><i>1</i><div><b data-i18n="flow.1h">Log in with your game account</b><span data-i18n="flow.1p">Same player name and password as in Worldforge.</span></div></li>
+        <li><i>2</i><div><b data-i18n="flow.2h">Pay with PayPal</b><span data-i18n="flow.2p">You will be redirected to PayPal to complete the payment securely.</span></div></li>
+        <li><i>3</i><div><b data-i18n="flow.3h">The gold arrives in the game</b><span data-i18n="flow.3p">The game picks it up automatically within a minute, or the next time you log in.</span></div></li>
+      </ol>
+      <div class="free-gold">
+        <svg class="i18"><use href="#i-coin"/></svg>
+        <p data-i18n="si.free"><b>Prefer to earn it?</b> Every new player starts with 150 gold, and you earn more by playing, from achievements and daily rewards of up to 75 gold.</p>
+      </div>
+    </div>
+  </div>
+  <p class="fine center"><svg class="i14 lock"><use href="#i-lock"/></svg><span data-i18n="store.fine">Payments are processed by PayPal. Gold is an in-game currency with no cash value and cannot be exchanged back for money. Prices are final.</span></p>
+</section>
+
+<!-- ============ COMMUNITY ============ -->
+<section class="rail sec" id="community">
+  <div class="sec-head">
+    <h2 data-i18n="com.h2">Worldforge on Discord.<br><span>Find allies before your neighbors find you.</span></h2>
+    <a class="btn btn-light btn-sm" data-link="discord" href="#community"><span data-i18n="com.open">Open Discord</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+  </div>
+  <div class="dc-card">
+    <div class="dc-l">
+      <div class="dc-k"><svg><use href="#i-discord"/></svg>DISCORD</div>
+      <h3 class="dc-t" data-i18n="com.t">The Worldforge server. <span>Where players negotiate alliances, trade and war.</span></h3>
+      <ul class="dc-pts">
+        <li><svg class="i14"><use href="#i-check"/></svg><span data-i18n="com.p1">Game news and new worlds</span></li>
+        <li><svg class="i14"><use href="#i-check"/></svg><span data-i18n="com.p2">Find allies and coalitions</span></li>
+        <li><svg class="i14"><use href="#i-check"/></svg><span data-i18n="com.p3">Help for new players and bug reports</span></li>
+      </ul>
+      <a class="btn btn-white" data-link="discord" href="#community"><svg class="i18"><use href="#i-discord"/></svg><span data-i18n="com.join">Join the Discord</span></a>
+    </div>
+    <div class="dc-r" aria-hidden="true">
+      <div class="dcm">
+        <div class="dcm-rail">
+          <span class="dcm-srv on"><img src="img/icon.png" alt="" width="40" height="40"></span>
+          <span class="dcm-sep"></span>
+          <span class="dcm-srv ghost"></span><span class="dcm-srv ghost"></span><span class="dcm-srv add">+</span>
+        </div>
+        <div class="dcm-side">
+          <div class="dcm-head">Worldforge</div>
+          <div class="dcm-cat" data-i18n="dc.info">Information</div>
+          <div class="dcm-ch on"><i>#</i><span data-i18n="dc.ann">announcements</span></div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.news">game-news</span></div>
+          <div class="dcm-cat" data-i18n="dc.game">Game</div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.dip">diplomacy</span></div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.lfa">looking-for-allies</span></div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.trade">trade</span></div>
+          <div class="dcm-cat" data-i18n="dc.support">Support</div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.help">help</span></div>
+          <div class="dcm-ch"><i>#</i><span data-i18n="dc.bugs">bugs-and-ideas</span></div>
+        </div>
+        <div class="dcm-main">
+          <div class="dcm-top"><i>#</i><span data-i18n="dc.ann">announcements</span></div>
+          <div class="dcm-msg">
+            <span class="dcm-av"><img src="img/icon.png" alt="" width="36" height="36"></span>
+            <div>
+              <div class="dcm-name">Senecioteam <em class="dcm-tag" data-i18n="dc.team">TEAM</em></div>
+              <p data-i18n="dc.msg">Worldforge 1.0 is out. Download the game, pick a free country and see you in the world!</p>
+              <div class="dcm-embed">
+                <img src="img/card.jpg" alt="">
+                <div><b>Worldforge</b><span data-i18n="hero.title">The online strategy game on a real map of the world</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="dcm-input" data-i18n="dc.input">Message #announcements</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="rail sec" id="faq">
+  <div class="sec-head">
+    <h2 data-i18n="faq.h2">Frequently asked questions.</h2>
+    <a class="btn btn-light btn-sm" data-link="discord" href="#community"><span data-i18n="faq.ask">Ask on Discord</span> <svg class="i10"><use href="#i-chev"/></svg></a>
+  </div>
+  <div class="faq">
+    <details open><summary data-i18n="q1">Is Worldforge free to play?</summary><p data-i18n="a1">Yes. The game is free to download and play. Gold is optional: every player starts with 150 gold and earns more by playing, from achievements and daily rewards.</p></details>
+    <details><summary data-i18n="q2">How does online play work?</summary><p data-i18n="a2">You play in one persistent world with other players. Time always runs, even when you are logged out, so keep an eye on your country. Players can offer each other peace, alliances or trade; you will find offers in the Diplomacy tab.</p></details>
+    <details><summary data-i18n="q3">How do I win?</summary><p data-i18n="a3">You win by controlling 45% of all provinces (rebel territories don't count). A world lasts at most 2 months of real time, then the final ranking is decided by score: population, income, military strength, research and number of provinces. You don't have to fight – a rich and educated country can win through trade, coalitions and influence.</p></details>
+    <details><summary data-i18n="q4">Which account do I use in the gold store?</summary><p data-i18n="a4">The same player name and password you use in the game. Your profile gets its online account the first time you log in to the game with an internet connection.</p></details>
+    <details><summary data-i18n="q5">When will I get the gold?</summary><p data-i18n="a5">As soon as PayPal confirms the payment. If the game is running, the gold appears within a minute; otherwise the next time you log in. The game shows a notification when it arrives.</p></details>
+    <details><summary data-i18n="q6">How can I pay?</summary><p data-i18n="a6">Payments are processed by PayPal. You pay with your PayPal account or, where PayPal offers it, with a card. Czech visitors pay in CZK, everyone else in EUR.</p></details>
+    <details><summary data-i18n="q7">What can I spend gold on?</summary><p data-i18n="a7">Gold speeds up construction, research, training and mobilization, and you can buy resources, a country color or a premium account with it.</p></details>
+    <details><summary data-i18n="q8">What are the system requirements?</summary><p data-i18n="a8">Windows 10 or 11 (64-bit), about 330 MB of disk space and an internet connection for online play. The installer is 103 MB and doesn't need admin rights.</p></details>
+    <details><summary data-i18n="q9">Where can I get help or report a bug?</summary><p data-i18n="a9">On our Discord server. That's also where we post news about the game and new worlds.</p></details>
+  </div>
+</section>
+
+<!-- ============ CALL TO ACTION ============ -->
+<section class="rail cta" id="download">
+  <svg class="waves waves-cta" data-waves="cta" aria-hidden="true"></svg>
+  <div class="cta-in">
+    <h2 data-i18n="cta.h2">The world is waiting.<br><span>Forge your nation.</span></h2>
+    <div class="cta-btns">
+      <a class="btn btn-ghost btn-sm btn-discord" data-link="discord" href="#community"><svg class="i18"><use href="#i-discord"/></svg><span data-i18n="cta.dc">Join Discord</span></a>
+      <a class="btn btn-light btn-sm" data-link="download" href="#download" download><svg class="i16"><use href="#i-download"/></svg><span data-i18n="cta.dl">Download for free</span></a>
+    </div>
+  </div>
+  <ul class="req">
+    <li><span data-i18n="req.sys">System</span><b data-i18n="req.sysv">Windows 10 / 11, 64-bit</b></li>
+    <li><span data-i18n="req.inst">Installer</span><b>103 MB</b></li>
+    <li><span data-i18n="req.disk">Disk space</span><b data-i18n="req.diskv">approx. 330 MB</b></li>
+    <li><span data-i18n="req.setup">Install</span><b data-i18n="req.setupv">No admin rights</b></li>
+    <li><span data-i18n="req.net">Internet</span><b data-i18n="req.netv">Required for online play</b></li>
+  </ul>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-brand">
+      <a class="logo" href="#top"><img src="img/icon.png" alt="" width="22" height="22"><span>WORLDFORGE</span></a>
+      <p data-i18n="foot.tag">Online strategy game by Senecioteam.</p>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot.game">Game</h4>
+      <a href="#play" data-i18n="nav.play">How to play</a><a href="#features" data-i18n="nav.features">Features</a><a href="#store" data-i18n="nav.store">Gold store</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot.dl">Download</h4>
+      <a data-link="download" href="#download" download data-i18n="foot.inst">Windows installer</a><a href="#download" data-i18n="foot.req">System requirements</a>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="nav.community">Community</h4>
+      <a data-link="discord" href="#community">Discord server</a><a data-link="discord" href="#community" data-i18n="foot.bug">Report a bug</a>
+    </div>
+    <div class="foot-col">
+      <h4 data-i18n="foot.legal">Legal</h4>
+      <a href="#terms" data-terms="0" data-i18n="foot.terms">Terms of use</a><a href="#terms" data-terms="3" data-i18n="foot.privacy">Data &amp; privacy</a><a href="#terms" data-terms="6" data-i18n="foot.lic">Third-party licenses</a>
+    </div>
+  </div>
+  <div class="foot-bot">
+    <a class="foot-dc" data-link="discord" href="#community"><svg class="i16"><use href="#i-discord"/></svg>discord: Worldforge</a>
+    <span data-i18n="foot.map">Map data: Natural Earth, NASA Blue Marble (public domain)</span>
+    <span>© 2026 Senecioteam</span>
+  </div>
+</footer>
+
+<!-- ============ DIALOGS ============ -->
+<dialog class="modal" id="loginDlg" aria-labelledby="loginTitle">
+  <form class="modal-in" id="loginForm" novalidate>
+    <div class="modal-h">
+      <img src="img/icon.png" alt="" width="36" height="36">
+      <button class="modal-x" type="button" data-close aria-label="Close">×</button>
+    </div>
+    <h3 id="loginTitle" data-i18n="login.h">Log in to Worldforge</h3>
+    <p class="modal-sub" data-i18n="login.sub">Use the same player name and password as in the game.</p>
+    <div class="preview-note" data-mode-note hidden></div>
+    <label class="field"><span data-i18n="login.name">Player name</span><input name="username" autocomplete="username" required maxlength="20"></label>
+    <label class="field"><span data-i18n="login.pw">Password</span><input name="password" type="password" autocomplete="current-password" required maxlength="200"></label>
+    <p class="form-err" id="loginErr" role="alert"></p>
+    <button class="btn btn-gold btn-block" type="submit" id="loginBtn" data-i18n="login.btn">Log in</button>
+    <p class="modal-foot"><span data-i18n="login.help">Trouble logging in?</span> <a data-link="discord" href="#community" data-i18n="login.helpLink">Get help on Discord</a></p>
+  </form>
+</dialog>
+
+<dialog class="modal" id="buyDlg" aria-labelledby="buyTitle">
+  <form class="modal-in" id="buyForm" novalidate></form>
+</dialog>
+
+<dialog class="terms" id="terms">
+  <div class="terms-h">
+    <h3 data-i18n="foot.terms">Terms of use</h3>
+    <button class="modal-x" id="termsClose" type="button" aria-label="Close">×</button>
+  </div>
+  <div class="terms-b" id="termsBody"></div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/i18n.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
